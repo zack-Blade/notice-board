@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Notice</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Add New Notice</h1>
+
+        <div class="form-group">
+            <label>Title</label>
+            <input type="text" name="title" id="title" placeholder="Enter title">
+        </div>
+
+        <div class="form-group">
+            <label>Content</label>
+            <textarea name="content" id="content" rows="5" placeholder="Enter notice content"></textarea>
+        </div>
+
+        <button onclick="submitForm()" class="btn">Post Notice</button>
+        <a href="/" class="btn" style="background:#888;">Cancel</a>
+
+        <form id="noticeForm" action="/add" method="POST" style="display:none;">
+            <input type="text" name="title" id="hiddenTitle">
+            <textarea name="content" id="hiddenContent"></textarea>
+        </form>
+
+        <script>
+            function submitForm() {
+                document.getElementById('hiddenTitle').value = document.getElementById('title').value;
+                document.getElementById('hiddenContent').value = document.getElementById('content').value;
+                document.getElementById('noticeForm').submit();
+            }
+        </script>
+    </div>
+</body>
+</html>
